@@ -10,18 +10,18 @@ var port = process.env.PORT || 8000;    // set our port
 var router = express.Router();        // get an instance of the express Router
 
 var basepath =  "media";
-var server = "localhost:3000/"
+var server = "localhost:"+port
 var options = {
   feed: {
-    title: 'feed title',
-    description: 'feed description',
-    link: 'http://example.org/rss.xml',
+    title: 'coast to coast',
+    description: 'collected coast to coast recordings',
+    link: 'http://'+server+"/rss",
     language: 'en'
   },
   posts: [{
-    title: 'post1 title',
-    description: 'post1 summary',
-    canonicalUrl: 'http://example.org/post1',
+    title: '',
+    description: '',
+    canonicalUrl: '',
     pubDate: (new Date()).toGMTString()
   }]
 };
@@ -49,8 +49,9 @@ function createPost(file){
     var newFile= {
         title: file,
         description: 'post1 summary',
-        canonicalUrl: 'http://'+server+basepath+"/"+encodeURIComponent(file),
-        pubDate: (new Date()).toGMTString()
+        canonicalUrl: 'http://'+server+'/'+basepath+"/"+encodeURIComponent(file),
+        pubDate: (new Date()).toGMTString(),
+        length: 1
     };
   //   if (!err){
   //     newFile.description = tags.year + " " + tags.title;

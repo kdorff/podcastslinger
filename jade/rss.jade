@@ -11,3 +11,4 @@ rss(version='2.0')
                 pubDate= item.pubDate
                 description= item.description
                 link= item.canonicalUrl
+                enclosure(url=item.canonicalUrl type="audio/mpeg"  length=item.length)
