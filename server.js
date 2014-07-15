@@ -3,7 +3,7 @@ var jade = require('jade');
 var id3 = require('./id3');
 var  Q  = require('q');
 
-var rssTemplate = fs.readFileSync('./jade/rss.jade').toString();
+var rssTemplate = fs.readFileSync('./rss.jade').toString();
 var express    = require('express');    // call express
 var app        = express();         // define our app using express
 var port = process.env.PORT || 8000;    // set our port
@@ -35,10 +35,11 @@ function createPost(file){
       description: 'post1 summary',
       canonicalUrl: 'http://'+server+'/'+basepath+"/"+encodeURIComponent(file),
       pubDate: (new Date()).toGMTString(),
-      length: tags.size || 1
+      length: 1
     };
     if (!err){
       newFile.description  = tags.year + " " + tags.title;
+      newFile.length= tags.size || 1
     } else {
        newFile.description  = "";
     }
