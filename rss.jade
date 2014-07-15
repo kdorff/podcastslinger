@@ -1,0 +1,16 @@
+doctype xml
+rss(version='2.0')
+    channel
+        title= feed.title
+        description= feed.description
+        link= feed.link
+        language= feed.language
+        for item in posts
+            item
+                title= item.title
+                link= item.canonicalUrl
+                description= item.title
+                enclosure(url=item.canonicalUrl type="audio/mpeg"  length=item.length)
+                guid= item.canonicalUrl
+                pubDate= item.pubDate
+
