@@ -3,21 +3,36 @@ var jade = require('jade');
 var id3 = require('./id3');
 var  Q  = require('q');
 
+var program = require('commander');
+var port, data, host, publicport, image;
+program
+  .version('0.0.1')
+  .option('-d, --data [value]', 'base path to files')
+  .option('-p, --port [value]', 'port')
+  .option('-h, --host [value]', 'public hostname')
+  .option('-l, --publicport [value]', 'public port')
+  .option('-t, --title [value]', 'public port')
+  .option('-z, --description [value]', 'public port')
+  .option('-i, --image [value]', 'icon for feed')
+
+  .parse(process.argv);
+
+
 var rssTemplate = fs.readFileSync('./rss.jade').toString();
 var express    = require('express');    // call express
 var app        = express();         // define our app using express
-var port = process.env.PORT || 8000;    // set our port
-var publicport = 32191;
+//var publicport = 32191;
 var router = express.Router();        // get an instance of the express Router
-
-var basepath =  "media";
-var server = "yellowtail.asuscomm.com:"+publicport
+//"yellowtail.asuscomm.com"
+var basepath =  program.data || "media";
+var server = program.host+":"+program.publicport;
 var options = {
   feed: {
-    title: 'coast to coast',
-    description: 'collected coast to coast recordings',
+    title: program.title,
+    description: program.description,
     link: 'http://'+server+"/rss",
-    language: 'en-us'
+    language: 'en-us',
+    image: program.image
   },
   posts: [{
     title: '',
@@ -81,5 +96,5 @@ router.get('/rss', function(req, res) {
 
  app.use('/', router);
  app.use('/media', express.static(basepath));
- app.listen(port);
- console.log('Magic happens on port ' + port);
+ app.listen(program.port);
+ console.log('Magic happens on port ' + program.port);
