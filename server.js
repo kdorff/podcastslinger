@@ -1,6 +1,6 @@
 var fs = require('fs');
 var jade = require('jade');
-var id3 = require('./id3');
+var id3 = require('./id3.js');
 var  Q  = require('q');
 
 var program = require('commander');
@@ -48,7 +48,7 @@ function createPost(file){
     var newFile= {
       title: file,
       description: 'post1 summary',
-      canonicalUrl: 'http://'+server+'/'+basepath+"/"+encodeURIComponent(file),
+      canonicalUrl: 'http://'+server+'/media/'+encodeURIComponent(file),
       pubDate: (new Date()).toGMTString(),
       length: 1
     };

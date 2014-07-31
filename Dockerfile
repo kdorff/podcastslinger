@@ -15,7 +15,7 @@ RUN usermod -g 100 nobody
 # install our dependencies and nodejs
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get -y install python-software-properties git build-essential
+#RUN apt-get -y install python-software-properties git build-essential
 RUN add-apt-repository -y ppa:chris-lea/node.js
 RUN apt-get update
 RUN apt-get -y install nodejs
@@ -28,16 +28,16 @@ RUN cd /tmp && npm install
 RUN mkdir -p /opt/app/podcastSlinger && cp -a /tmp/node_modules /opt/app/podcastSlinger
 
 # podcastSlinger Configuration
-VOLUME /media
+#VOLUME
 
 # From here we load our application's code in, therefore the previous docker
 # "layer" thats been cached will be used if possible
 WORKDIR /opt/app/podcastSlinger
-ADD . /opt/app/podcastSlinger
+ADD id3.js /opt/app/podcastSlinger/
+ADD rss.jade /opt/app/podcastSlinger/
+ADD server.js /opt/app/podcastSlinger/
 
-EXPOSE $PORT
-
-#CMD ["node", "server.js"]
+RUN chown -R 99:100 /opt/app/podcastSlinger
 
 # Add podcastSlinger to runit
 RUN mkdir /etc/service/podcastSlinger
