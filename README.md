@@ -1,3 +1,9 @@
+
+podcastslinger
+==============
+
+serve podcasts via node/docker
+
 usage:
 
 docker build -t podcastslinger .
