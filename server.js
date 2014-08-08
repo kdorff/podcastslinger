@@ -48,7 +48,7 @@ function createPost(file){
     var newFile= {
       title: file,
       description: 'post1 summary',
-      canonicalUrl: 'http://'+server+'/media/'+encodeURIComponent(file),
+      canonicalUrl: 'http://'+server+'/media'+encodeURIComponent(file),
       pubDate: (new Date()).toGMTString(),
       length: 1
     };
