@@ -1,5 +1,5 @@
 {
-  "name": "rss",
+  "name": "podcast-slinger",
   "version": "0.0.0",
   "description": "rss feed generator",
   "main": "server.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kwv",
-  "license": "mit",
+  "license": "MIT",
   "devDependencies": {
     "express": "^4.4.4",
     "grunt": "^0.4.5",
@@ -15,6 +15,9 @@
   },
   "dependencies": {
     "commander": "^2.3.0",
-    "q": "^1.0.1"
+    "compression": "^1.6.1",
+    "pug": "^0.1.0",
+    "q": "^1.0.1",
+    "q-io": "^1.13.2"
   }
 }
