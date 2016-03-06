@@ -21,9 +21,7 @@ program
 
 var express = require('express'); // call express
 var app = express(); // define our app using express
-//var publicport = 32191;
 var router = express.Router(); // get an instance of the express Router
-//"yellowtail.asuscomm.com"
 var basepath = program.data || "media";
 var feed;
 var server = program.host + ":" + program.publicport;

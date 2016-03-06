@@ -8,6 +8,7 @@
   },
   "author": "kwv",
   "license": "MIT",
+  "repository": "https://github.com/kwv/podcastslinger",
   "devDependencies": {
     "express": "^4.4.4",
     "grunt": "^0.4.5",
